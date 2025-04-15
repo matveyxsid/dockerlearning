@@ -1,2 +1,2 @@
-### Doocker learnung
+### Doocker learning
 Тестовые задания по курсу докера

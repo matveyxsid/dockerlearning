@@ -1,5 +1,0 @@
-github.com/gin-gonic/gin v1.8.1 h1:NPKNcSxKfHyNq3AxFMhi2eRA1ht7tb8oqLqXnQbb3WE=
-github.com/gin-gonic/gin v1.8.1/go.mod h1:LQNVMS6OomMECuqp5z6j4P1gNjvC88HKsv0u/Hh6KTk=
-
-github.com/stretchr/testify v1.8.0 h1:o6F9k+JxyP8RtxzSxYvL9xq+kN5Wh05r6U12XrJ0ya8=
-github.com/stretchr/testify v1.8.0/go.mod h1:Vv1E7sbZMKkZs8HiE5RkMbbRZemQtqIqD0g+MjgwHDc=

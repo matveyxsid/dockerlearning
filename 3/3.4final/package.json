@@ -1,0 +1,19 @@
+{
+  "name": "node-app",
+  "version": "1.0.0",
+  "description": "A simple Express app",
+  "main": "node_app.js",
+  "scripts": {
+    "start": "node node_app.js",
+    "dev": "nodemon node_app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

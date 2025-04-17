@@ -1,0 +1,26 @@
+version: "3"
+services:
+  webserver:
+    image: nginx:alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - shared-data:/usr/share/nginx/html/time
+    depends_on:
+      - app
+    networks:
+      - app-network
+  app:
+    image: busybox:latest
+    volumes:
+      - shared-data:/shared-data
+    networks:
+      - app-network
+    command: sh -c "while true; do date > /shared-data/time.txt; sleep 10; done"
+
+
+volumes:
+  shared-data:
+networks:
+  app-network:

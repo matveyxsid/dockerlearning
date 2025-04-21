@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    container_name: nginx
+    ports:
+      - ${HOST_PORT}:80
+

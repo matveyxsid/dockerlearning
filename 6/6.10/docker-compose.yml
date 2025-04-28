@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  app:
+    image: nginx:alpine
+    profiles:
+      - dev
+      - test
+      - prod
+    ports:
+      - "8080:80"
+
+  db:
+    image: postgres:13-alpine
+    profiles:
+      - dev
+      - test
+      - prod
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: app_db
+
+  adminer:
+    image: adminer:latest
+    profiles:
+      - dev
+      - test
+    ports:
+      - "8081:8080"
+
+  cache:
+    image: redis:alpine
+    profiles:
+      - dev
+      - prod
+    ports:
+      - "6379:6379"
+
+  test-runner:
+    image: alpine:latest
+    profiles:
+      - test
+    command: echo "Running tests..." && sleep 10 && echo "Tests completed!"

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Docker Compose Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Привет из Docker!</h1>
+        <p>Это демонстрация расширенной конфигурации Docker Compose.</p>
+        <p>Режим: <span id="environment">неизвестно</span></p>
+    </div>
+
+    <script>
+        // Читаем переменную окружения из мета-тега
+        const env = document.querySelector('meta[name="environment"]');
+        if (env) {
+            document.getElementById('environment').textContent = env.getAttribute('content');
+        }
+    </script>
+</body>
+</html><meta name="environment" content="development">
+<meta name="environment" content="development">

@@ -1,0 +1,5 @@
+В Docker Compose версии 3 некоторые ограничения ресурсов (например, cpu-shares, device-read-bps и device-write-bps) не поддерживаются напрямую через секцию deploy.resources. Для их настройки нужно использовать docker update после запуска контейнеров:
+
+# После запуска docker-compose up -d выполните:
+docker update --cpu-shares=256 background-service
+docker update --device-read-bps /dev/sda:20mb --device-write-bps /dev/sda:10mb limited-db

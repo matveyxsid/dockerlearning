@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  api:
+    image: nginx:alpine
+    container_name: api-service
+    ports:
+     - 8001:80
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+    networks:
+      - resource-test-net
+
+  data-proccesor:
+    image: python:3.9-slim
+    container_name: data-processor
+    volumes:
+      - ./stress_cpu.py:/app/stress_cpu.py
+    workdir: /app
+    command: python stress_cpu.py
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    networks:
+      - resource-test-net
+
+  background:
+    image: python:3.9-slim
+    container_name: background-service
+     volumes:
+      - ./stress_cpu.py:/app/stress_cpu.py
+    workdir: /app
+    command: python stress_cpu.py
+    deploy:
+      resources:
+        limits:
+# cpu shares не работает тут
+# запуск через docker update --cpu-shares=256 background-service
+          memory: 128M
+    networks:
+      - resource-test-net
+  db:
+    image: postgres:13-alpine
+    container_name: limited-db
+    environment:
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=testuser
+      - POSTGRES_PASSWORD=testpass
+    volumes:
+      - db-data:/var/lib/postgresql/data
+# тут тоже через docker update 
+#docker update --device-read-bps /dev/sda:20mb --device-write-bps /dev/sda:10mb limited-db
+    networks:
+      - resource-test-net
+
+volumes:
+  db-data:
+
+networks:
+  resource-test-net:
+   
